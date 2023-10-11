@@ -12,13 +12,16 @@ public class Transacao{
 
     public static void deposit(float depositAmount){
         balance += depositAmount;
+        System.out.println("Depósito realizado com sucesso!");
     }
 
     public static void withdraw(float withdrawAmount){
         if (withdrawlAmount <= balance){
             balance -= withdrawAmount
+            System.out.println("Saque realizado com sucesso!");
         } else {
-
+            System.out.println("Saldo Insuficiente.");
         }
+    }
     }
 }
