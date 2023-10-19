@@ -34,4 +34,11 @@ public class Client {
     public String setAdress{
         this.adress = adress;
     }
+
+    public String showInfo(){
+        return "\nNome: " + this.getName() +
+        "\nCPF: " + this.getCPF() +
+        "\nNascimento: " + this.getBirthdate() +
+        "\nEndereco: " + this.getAdress();
+    }
 }
