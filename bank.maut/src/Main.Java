@@ -21,9 +21,9 @@ public class Main {
 
             if(option == 1){
                 System.out.println("Digite seu nome: ");
-                String nome=scanner.next();
+                String name = scanner.next();
                 System.out.println("Digite seu cpf: ");
-                String cpf = scanner.next();
+                String CPF = scanner.next();
                 System.out.println("Digite o número de sua casa: ");
                 String numero = scanner.next();
                 System.out.println("Digite a rua: ");
@@ -35,8 +35,8 @@ public class Main {
                 System.out.println("Digite seu CEP:");
                 int cep = scanner.nextInt();
 
-                Cliente.Endereco endereco = new Cliente.Endereco(rua, bairro, cidade, numCasa);
-                Cliente cliente = new Cliente(nome, cpf, endereco, null);
+                Cliente.Endereco endereco = new Cliente.Endereco(numero, rua, bairro, cidade,  estado, String cep);
+                Cliente cliente = new Cliente(name, CPF, adress, null);
                 conta = new Conta("000-1", "0000000-0", 0, cliente);
                 System.out.println("Conta criada com sucesso!");
             } else if(option == 2){
