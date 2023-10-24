@@ -15,9 +15,6 @@ public class Endereço {
         this.cep = cep;
     }
 
-    public Endereço(int i, String rua2, String bairro2, String cidade2, String estado2, String cep2) {
-    }
-
     public String getNumero() {
         return numero;
     }
