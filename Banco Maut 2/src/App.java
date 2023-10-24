@@ -3,6 +3,8 @@ import br.edu.ifpi.poo.entidades.Conta;
 import br.edu.ifpi.poo.entidades.ContaCorrente;
 import br.edu.ifpi.poo.entidades.ContaPoupanca;
 import br.edu.ifpi.poo.entidades.Endereco;
+import br.edu.ifpi.poo.notificações.NotificacaoEmail;
+import br.edu.ifpi.poo.notificações.NotificacaoSMS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +25,13 @@ public class App {
         while(true){
             System.out.println("_______________MENU - BANCO MAUT_______________");
             System.out.println("");
-            System.out.println("              1) Depositar");
-            System.out.println("              2) Sacar");
-            System.out.println("              3) Transferir");
-            System.out.println("              4) Consultar Informações da conta");
-            System.out.println("              5) Consultar Saldo");
-            System.out.println("              6) Sair");
+            System.out.println("              1)Configurar Nnotificações");
+            System.out.println("              2) Depositar");
+            System.out.println("              3) Sacar");
+            System.out.println("              4) Transferir");
+            System.out.println("              5) Consultar Informações da conta");
+            System.out.println("              6) Consultar Saldo");
+            System.out.println("              0) Sair");
             System.out.println("              Selecione a opção desejada");
             System.out.println("________________________________________________");
 
@@ -36,12 +39,32 @@ public class App {
             scanner.nextLine();
 
             if(option == 1){
+                System.out.println("Como deseja receber Notificações ?");
+                System.out.println("1) Via SMS");
+                System.out.println("2) Via Email");
+                System.out.println("3) Via SMS e Email");
+                int notif = scanner.nextInt();
+                scanner.nextLine();
+                for(Conta conta : contas){
+                    if(notif == 1){
+                        conta.setNotificacao(new NotificacaoSMS());
+                        System.out.println("Suas notificações serão enviadas por SMS a partir de agora.");
+                    } else if (notif == 2){
+                        conta.setNotificacao(new NotificacaoEmail());
+                        System.out.println("Suas notificações serão enviadas por Email a partir de agora.");
+                    } else if (notif == 3){
+                        conta.setNotificacao(new NotificacaoSMS());
+                        conta.setNotificacao(new NotificacaoEmail());
+                        System.out.println("Suas notificações serão enviadas por SMS e Email a partir de agora.");
+                    } else{
+                        System.out.println("Opção Inválida");
+                    }
+                }
+            }else if(option == 2){
                 System.out.println("Digite o número da conta");
                 String number = scanner.nextLine();
                 System.out.println("Digite o número da agência");
                 String agencyNumber = scanner.nextLine();
-                System.out.println("Escolha o tipo de notificação");
-                
                 System.out.println("Digite o valor do depósito");
                 double deposit = scanner.nextDouble();
                 scanner.nextLine();
@@ -50,7 +73,7 @@ public class App {
                         conta.depositar(deposit);
                     }
                 }
-            }else if(option == 2){
+            }else if(option == 3){
                 System.out.println("Digite o número da conta");
                 String number = scanner.nextLine();
                 System.out.println("Digite o número da agência");
@@ -63,7 +86,7 @@ public class App {
                         conta.Sacar(saque);
                     }
                 }
-            } else if(option == 3){
+            } else if(option == 4){
                 System.out.println("Digite o número da conta de origem");
                 String numberOrigem = scanner.nextLine();
                 System.out.println("Digite o número da agência de origem");
@@ -83,7 +106,7 @@ public class App {
                         conta.receberTransferencia(transferencia);
                     }
                 }
-            } else if(option == 4){
+            } else if(option == 5){
                 System.out.println("Digite o Numero da conta que deseja vizualizar: ");
                 String number = scanner.nextLine();
                 System.out.println("Digite o Numero da agência da conta: ");
@@ -100,7 +123,7 @@ public class App {
                         conta.verExtrato();
                     }
                 }
-            } else if(option == 5){
+            } else if(option == 6){
                 System.out.println("Digite o Numero da conta que deseja vizualizar: ");
                 String number = scanner.nextLine();
                 System.out.println("Digite o Numero da agência da conta: ");
@@ -110,7 +133,7 @@ public class App {
                         System.out.println("Saldo da conta " + number + ": R$ " + conta.getBalance());
                     }
                 }
-            } else if(option == 6){
+            } else if(option == 0){
                 System.out.println("       Você saiu do programa!");
                 System.out.println("Obrigado por usar o sistema Banco Maut!");
                 break;
@@ -121,4 +144,3 @@ public class App {
 
     }
 }
-
