@@ -2,18 +2,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Conta {
+    public static final String getBalance = null;
     private String number;
     private String agencyNumber;
     private String client;
     protected double balance;
     private List<Transacao> transacoes = new ArrayList<Transacao>();
-    public String getBalance;;
 
-    public Conta(String number, String agencyNumber, String client, double abertura, String history){
+    public Conta(String number, String agencyNumber, String client, double balance, Transacao transacoes){
         this.number = number;
         this.agencyNumber = agencyNumber;
         this.client = client;
-        this.balance = abertura;
+        this.balance = 0.0;
+        this.transacoes = new ArrayList<>();
     }
 
     public String getNumber() {
@@ -60,12 +61,21 @@ public class Conta {
 
     public void Transferir(double transferencia){
         if (transferencia <= balance){
-            balance -= transferencia;
+            setBalance(balance -= transferencia);;
             System.out.println("Transferência realizada com sucesso!");
         } else {
             System.out.println("Tranferência Interrompida: Saldo Insuficiente.");
         }
     }
 
-}
+    public void adicionarTransacao(double value, String type){
+        Transacao novaTransacao = new Transacao(value, type);
+        transacoes.add(novaTransacao);
+    }
+    public void verExtrato(){
+        for(Transacao novaTransacao : transacoes){
+            System.out.println(novaTransacao.toString());
+        }
+    }
 
+}
