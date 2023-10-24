@@ -12,12 +12,12 @@ public class App {
         contas.add(new Conta("2", "00001", "client1", 100.00, null));
 
         while(true){
-            System.out.println("MENU - BANCO MAUT");
+            System.out.println("===MENU - BANCO MAUT===");
             System.out.println("1) Depositar");
             System.out.println("2) Sacar");
             System.out.println("3) Transferir");
             System.out.println("4) Consultar Informações da conta");
-            System.out.println("5) Consultar Extrato");
+            System.out.println("5) Consultar Saldo");
             System.out.println("6) Sair");
             System.out.println("Selecione a opção desejada");
 
@@ -35,6 +35,7 @@ public class App {
                 for(Conta conta : contas){
                     if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
                         conta.depositar(deposit);
+                        conta.adicionarTransacao(deposit, "Depósito");
                     }
                 }
             } else if(option == 2){
@@ -48,6 +49,7 @@ public class App {
                 for(Conta conta : contas){
                     if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
                         conta.Sacar(saque);
+                        conta.adicionarTransacao(saque, "Saque");
                     }
                 }
             } else if(option == 3){
@@ -65,6 +67,7 @@ public class App {
                 for(Conta conta : contas){
                     if(conta.getNumber().equals(numberOrigem) && conta.getAgencyNumber().equals(agencyNumberOrigem)){
                         conta.Transferir(transferencia);
+                        conta.adicionarTransacao(transferencia, "Transferência");
                     }
                 }
             } else if(option == 4){
@@ -81,6 +84,7 @@ public class App {
                         System.out.println("CPF: " + client1.getCPF());
                         System.out.println("Data de Nascimento :" + client1.getBirthdate());
                         System.out.println("HISTÓRICO DE TRANSAÇÕES");
+                        conta.verExtrato();
                     }
                 }
             } else if(option == 5){
