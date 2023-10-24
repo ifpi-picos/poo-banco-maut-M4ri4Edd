@@ -8,6 +8,12 @@ public class App {
         Client client1 = new Client("Maria Luz", "000.000.000-00", "18/10/2005", new Endereco("791", "ACL", "Ipueiras", "Picos", "PI", "64000"));
         Scanner scanner = new Scanner(System.in);
 
+        Conta contaCorrente = new ContaCorrete("101", "00001", client1, 1000, null);
+        Conta contaPoupança = new ContaPoupanca("202", "00001", client1, 1000, null);
+
+        contas.add(contaCorrente);
+        contas.add(contaPoupança);
+
         while(true){
             System.out.println("_______________MENU - BANCO MAUT_______________");
             System.out.println("");
@@ -34,7 +40,6 @@ public class App {
                 for(Conta conta : contas){
                     if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
                         conta.depositar(deposit);
-                        conta.adicionarTransacao(deposit, "Depósito");
                     }
                 }
             }else if(option == 2){
@@ -48,7 +53,6 @@ public class App {
                 for(Conta conta : contas){
                     if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
                         conta.Sacar(saque);
-                        conta.adicionarTransacao(saque, "Saque");
                     }
                 }
             } else if(option == 3){
@@ -66,7 +70,9 @@ public class App {
                 for(Conta conta : contas){
                     if(conta.getNumber().equals(numberOrigem) && conta.getAgencyNumber().equals(agencyNumberOrigem)){
                         conta.Transferir(transferencia);
-                        conta.adicionarTransacao(transferencia, "Transferência");
+                    }
+                    if(conta.getNumber().equals(numberDestino) && conta.getAgencyNumber().equals(agencyNumberDestino)){
+                        conta.receberTransferencia(transferencia);
                     }
                 }
             } else if(option == 4){
