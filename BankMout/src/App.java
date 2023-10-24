@@ -8,8 +8,8 @@ public class App {
         Client client1 = new Client("Maria Luz", "000.000.000-00", "18/10/2005", new Endereço("791", "ACL", "Ipueiras", "Picos", "PI", "64000"));
         Scanner scanner = new Scanner(System.in);
 
-        contas.add(new Conta("1", "00001", "client1", 100, null));
-        contas.add(new Conta("2", "00001", "client1", 100, null));
+        contas.add(new Conta("1", "00001", "client1", 100.00, null));
+        contas.add(new Conta("2", "00001", "client1", 100.00, null));
 
         while(true){
             System.out.println("MENU - BANCO MAUT");
@@ -90,7 +90,7 @@ public class App {
                 String agencyNumber = scanner.nextLine();
                 for(Conta conta : contas){
                     if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
-                        System.out.println("Saldo da conta " + number + ": R$ " + conta.getBalance);
+                        System.out.println("Saldo da conta " + number + ": R$ " + conta.getBalance());
                     }
                 }
             } else if(option == 6){
