@@ -4,17 +4,14 @@ public class Client {
     private String name;
     private String CPF;
     private String birthdate;
-    private String adress;
+    private Endereço adress;
     private List<Conta> contas;
 
-    public Client(String name, String CPF, String birthdate, String adress){
+    public Client(String name, String CPF, String birthdate, Endereço adress){
         this.name = name;
         this.CPF = CPF;
         this.birthdate = birthdate;
         this.adress = adress;
-    }
-
-   public Client(String name2, String cPF2, String birthdate2, Endereço endereço) {
     }
 
 public String getName() {
@@ -29,21 +26,10 @@ public String getName() {
        return birthdate;
    }
 
-   public String getAdress() {
+   public Endereço getAdress() {
        return adress;
    }
 
    public List<Conta> getContas() {
        return contas;
    }
-
-    public String showInfo(){
-        return "\nNome: " + this.getName() +
-        "\nCPF: " + this.getCPF() +
-        "\nNascimento: " + this.getBirthdate() +
-        "\nEndereco: " + this.getAdress();
-    }
-
-    public enum adress {
-    }
-}
