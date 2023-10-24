@@ -8,8 +8,8 @@ public class App {
         Client client1 = new Client("Maria Luz", "000.000.000-00", "18/10/2005", new Endereco("791", "ACL", "Ipueiras", "Picos", "PI", "64000"));
         Scanner scanner = new Scanner(System.in);
 
-        Conta contaCorrente = new ContaCorrete("101", "00001", client1, 1000, null);
-        Conta contaPoupança = new ContaPoupanca("202", "00001", client1, 1000, null);
+        Conta contaCorrente = new ContaCorrete("101", "00001", client1, 0.0, null);
+        Conta contaPoupança = new ContaPoupanca("202", "00001", client1, 0.0, null);
 
         contas.add(contaCorrente);
         contas.add(contaPoupança);
