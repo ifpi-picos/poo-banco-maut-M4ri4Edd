@@ -6,7 +6,8 @@ public class Conta {
     private String agencyNumber;
     private String client;
     protected double balance;
-    private List<Transacao> transacoes = new ArrayList<Transacao>();;
+    private List<Transacao> transacoes = new ArrayList<Transacao>();
+    public String getBalance;;
 
     public Conta(String number, String agencyNumber, String client, double abertura, String history){
         this.number = number;
@@ -15,8 +16,7 @@ public class Conta {
         this.balance = abertura;
     }
 
-
-public String getNumber() {
+    public String getNumber() {
        return number;
    }
 
@@ -38,12 +38,6 @@ public String getNumber() {
 
     public void setBalance(double balance) {
         this.balance = balance;
-    }
-
-    public void showBalance(){
-        System.out.println("Agencia: " + this.agencyNumber);
-        System.out.println("Conta: " + this.number);
-        System.out.println("Saldo: R$ " + this.balance);
     }
 
     public void depositar(double deposit){
