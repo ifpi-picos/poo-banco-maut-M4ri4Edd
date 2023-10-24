@@ -9,14 +9,16 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         while(true){
-            System.out.println("===MENU - BANCO MAUT===");
-            System.out.println("1) Depositar");
-            System.out.println("2) Sacar");
-            System.out.println("3) Transferir");
-            System.out.println("4) Consultar Informações da conta");
-            System.out.println("5) Consultar Saldo");
-            System.out.println("6) Sair");
-            System.out.println("Selecione a opção desejada");
+            System.out.println("_______________MENU - BANCO MAUT_______________");
+            System.out.println("");
+            System.out.println("               1) Depositar");
+            System.out.println("               2) Sacar");
+            System.out.println("               3) Transferir");
+            System.out.println("               4) Consultar Informações da conta");
+            System.out.println("               5) Consultar Saldo");
+            System.out.println("               6) Sair");
+            System.out.println("               Selecione a opção desejada");
+            System.out.println("____________________________________________________");
 
             int option = scanner.nextInt();
             scanner.nextLine();
@@ -95,7 +97,8 @@ public class App {
                     }
                 }
             } else if(option == 6){
-                System.out.print("Você saiu do programa!");
+                System.out.println("       Você saiu do programa!");
+                System.out.println("Obrigado por usar o sistema Banco Maut!");
                 break;
             } else {
                 System.out.print("Opção inválida, Tente novamente:");
