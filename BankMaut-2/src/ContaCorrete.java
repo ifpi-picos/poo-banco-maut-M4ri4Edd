@@ -2,10 +2,10 @@ public class ContaCorrete extends Conta {
     private double chequeEspecial;
     private int transferenciasRestantes;
 
-    public ContaCorrete(String number, String agencyNumber, String client, double balance, Transacao transacoes) {
+    public ContaCorrete(String number, String agencyNumber, Client client, double balance, Transacao transacoes) {
         super(number, agencyNumber, client, balance, transacoes);
-        this.chequeEspecial = 100;
-        this.transferenciasRestantes = 2;
+        this.chequeEspecial = 1000;
+        this.transferenciasRestantes = 1;
       }
 
     public double getChequeEspecial() {
@@ -17,33 +17,42 @@ public class ContaCorrete extends Conta {
     }
 
     @Override
-    public boolean Transferir(Conta destino, Double valor){
-        if(valor < 0 && valor <= getChequeEspecial()){
+    public void Sacar(double saque){
+        double valorCheque = getChequeEspecial();
+        double divida = saque - balance;
+        if (saque <= balance){
+            setBalance(balance -= saque);
+            System.out.println("Saque realizado com sucesso");
+            getNotificacao().enviarNotificacao(saque, "Saque da Conta Corrente");
+            getTransacoes().add(new Transacao(saque, "Saque da Conta Corrente"));
+        } else if(saque > balance && saque < valorCheque){
+            setBalance(balance -= saque);
+            System.out.println("Saque realizado com sucesso!");
+            System.out.println("O cliente deve ao banco R$ " + divida);
+            getNotificacao().enviarNotificacao(saque, "Saque da Conta Corrente");
+            getTransacoes().add(new Transacao(saque, "Saque da Conta Corrente"));
+        } else {
+            System.out.println("Saldo Insuficiente.");
+        }
+    }
+
+    @Override
+    public void Transferir(double transferencia){
+        double valorTaxado = transferencia + (transferencia * 0.1);
+        if (transferencia <= getChequeEspecial()){
             if(transferenciasRestantes > 2){
-                double taxaTransf = (valor* 0.1);
-                super.balance -= (valor + taxaTransf);
-                destino.balance += valor;
-                getNotificacao().enviarNotificacao("Transferencia", valor);
-                System.out.println("Transferencia realizada com sucesso !!\n");
-                getTransacoes().add(new Transacao(valor, "Transferencia"));
-                destino.getTransacoes().add(new Transacao(valor, "Recibo transferencia"));
-                ++transferenciasRestantes;
-                return true;
-            } else {
-                super.balance -= valor;
-                destino.balance += valor;
-                getNotificacao().enviarNotificacao("Transferencia", valor);
-                transferenciasRestantes++;
-                System.out.println("Transferencia realizada com sucesso !!\n");
-                getTransacoes().add(new Transacao(valor, "Transferencia"));
-                destino.getTransacoes().add(new Transacao(valor, "Recibo transferencia"));
-                return true;
+                setBalance(balance -= valorTaxado);;
+                System.out.println("Transferência realizada com sucesso!");
+                getNotificacao().enviarNotificacao(transferencia, "Transferência da Conta Corrente");
+                getTransacoes().add(new Transacao(transferencia, "Transferência da Conta Corrente"));
+            } else if(transferenciasRestantes > 0 && transferenciasRestantes <= 2){
+                setBalance(balance -= transferencia);
+                getNotificacao().enviarNotificacao(transferencia, "Transferência da Conta Corrente");
+                getTransacoes().add(new Transacao(transferencia, "Transferência da Conta Corrente"));
             }
         } else {
-            System.err.println("Valor insuficiente para a transferência!");
-            return false;
+            System.out.println("Tranferência Interrompida: Saldo Insuficiente.");
         }
-
     }
 
 }
