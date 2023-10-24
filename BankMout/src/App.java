@@ -33,7 +33,7 @@ public class App {
                 double deposit = scanner.nextDouble();
                 scanner.nextLine();
                 for(Conta conta : contas){
-                    if(conta.getNumber() == number && conta.getAgencyNumber() == agencyNumber){
+                    if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
                         conta.depositar(deposit);
                     }
                 }
@@ -46,7 +46,7 @@ public class App {
                 double saque = scanner.nextDouble();
                 scanner.nextLine();
                 for(Conta conta : contas){
-                    if(conta.getNumber() == number && conta.getAgencyNumber() == agencyNumber){
+                    if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
                         conta.Sacar(saque);
                     }
                 }
@@ -63,7 +63,7 @@ public class App {
                 double transferencia = scanner.nextDouble();
                 scanner.nextLine();
                 for(Conta conta : contas){
-                    if(conta.getNumber() == numberOrigem && conta.getAgencyNumber() == agencyNumberOrigem){
+                    if(conta.getNumber().equals(numberOrigem) && conta.getAgencyNumber().equals(agencyNumberOrigem)){
                         conta.Transferir(transferencia);
                     }
                 }
@@ -73,7 +73,7 @@ public class App {
                 System.out.println("Digite o Numero da agência da conta: ");
                 String agencyNumber = scanner.nextLine();
                 for(Conta conta : contas){
-                    if(conta.getNumber() == number && conta.getAgencyNumber() == agencyNumber){
+                    if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
                         System.out.println("INFORMAÇÕES DA CONTA " + number);
                         System.out.println("Cliente: " + client1.getName());
                         System.out.println("Número da conta: " + number);
@@ -89,7 +89,7 @@ public class App {
                 System.out.println("Digite o Numero da agência da conta: ");
                 String agencyNumber = scanner.nextLine();
                 for(Conta conta : contas){
-                    if(conta.getNumber() == number && conta.getAgencyNumber() == agencyNumber){
+                    if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
                         System.out.println("Saldo da conta " + number + ": R$ " + conta.getBalance);
                     }
                 }
