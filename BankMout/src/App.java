@@ -67,7 +67,6 @@ public class App {
                 for(Conta conta : contas){
                     if(conta.getNumber().equals(numberOrigem) && conta.getAgencyNumber().equals(agencyNumberOrigem)){
                         conta.Transferir(transferencia);
-                        conta.adicionarTransacao(transferencia, "Transferência");
                     }
                 }
             } else if(option == 4){
