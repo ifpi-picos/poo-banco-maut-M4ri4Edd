@@ -1,11 +1,13 @@
 package br.edu.ifpi.poo.entidades;
 
+import br.edu.ifpi.poo.notificações.Notificacao;
+
 public class ContaCorrente extends Conta {
     private double chequeEspecial;
     private int transferenciasRestantes;
 
-    public ContaCorrente(String number, String agencyNumber, Client client, double balance, Transacao transacoes) {
-        super(number, agencyNumber, client, balance, transacoes);
+    public ContaCorrente(String number, String agencyNumber, Client client, double balance, Transacao transacoes, Notificacao notificacao) {
+        super(number, agencyNumber, client, balance, transacoes, notificacao);
         this.chequeEspecial = 1000;
         this.transferenciasRestantes = 1;
       }
@@ -16,6 +18,14 @@ public class ContaCorrente extends Conta {
 
     public double getSaldoCorrente() {
         return super.getBalance();
+    }
+
+         public Notificacao getNotificacao() {
+       return notificacao;
+    }
+
+    public void setNotificacao(Notificacao notificacao) {
+        this.notificacao = notificacao;
     }
 
     @Override
@@ -58,6 +68,4 @@ public class ContaCorrente extends Conta {
             System.out.println("Tranferência Interrompida: Saldo Insuficiente.");
         }
     }
-
 }
-
