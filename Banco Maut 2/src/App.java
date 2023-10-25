@@ -68,13 +68,13 @@ public class App {
                     int notif = scanner.nextInt();
                     scanner.nextLine();
                     for(Conta conta : contas){
-                        if(notif == 1){
+                        if(notif == 1 && conta.getNumber().equals(number)){
                             conta.setNotificacao(new NotificacaoSMS());
-                            System.out.println("Suas notificações serão enviadas por SMS a partir de agora.");
-                        } else if (notif == 2){
+                            System.out.println("Suas notificações para essa Conta serão enviadas por SMS a partir de agora.");
+                        } else if (notif == 2 && conta.getNumber().equals(number)){
                             conta.setNotificacao(new NotificacaoEmail());
-                            System.out.println("Suas notificações serão enviadas por Email a partir de agora.");
-                        } else{
+                            System.out.println("Suas notificações para essa Conta serão enviadas por Email a partir de agora.");
+                        } else if (notif < 1 && notif > 2){
                             System.out.println("Opção Inválida");
                         }
                     }
@@ -92,13 +92,13 @@ public class App {
                 for(Conta conta : contas){
                     if(notif == 1 && conta.getNumber().equals(number)){
                         conta.setNotificacao(new NotificacaoSMS());
-                        System.out.println("Suas notificações serão enviadas por SMS a partir de agora.");
+                        System.out.println("Suas notificações para essa Conta serão enviadas por SMS a partir de agora.");
                     } else if (notif == 2 && conta.getNumber().equals(number)){
                         conta.setNotificacao(new NotificacaoEmail());
-                        System.out.println("Suas notificações serão enviadas por Email a partir de agora.");
-                    } else{
+                        System.out.println("Suas notificações para essa Conta serão enviadas por Email a partir de agora.");
+                    } else if (notif < 1 && notif > 2){
                         System.out.println("Opção Inválida");
-                    }
+                    } 
                 }
             }else if(option == 3){
                 System.out.println("Digite o número da Conta");
@@ -184,6 +184,5 @@ public class App {
                 System.out.print("Opção inválida, Tente novamente:");
             }
         }
-
     }
 }
