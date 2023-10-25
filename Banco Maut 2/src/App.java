@@ -50,7 +50,7 @@ public class App {
                     contas.add(new ContaCorrente(number, agencyNumber, client1, abertura, null, null));
                     System.out.println("Nova Conta Cadastrada com sucesso");
                 } else if (acc == 2){
-                    contas.add(new ContaPoupanca(number, agencyNumber, client1, abertura, null, null));
+                    contas.add(new ContaPoupanca(number, agencyNumber, client1, abertura, null, null, 0));
                     System.out.println("Nova Conta Cadastrada com sucesso");
                 }
 
