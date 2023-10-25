@@ -10,14 +10,15 @@ public class Conta {
     private Client client;
     protected double balance;
     private List<Transacao> transacoes = new ArrayList<Transacao>();
-    private Notificacao notificacao;
+    protected Notificacao notificacao;
 
-    public Conta(String number, String agencyNumber, Client client, double balance, Transacao transacoes){
+    public Conta(String number, String agencyNumber, Client client, double balance, Transacao transacoes, Notificacao notificacao){
         this.number = number;
         this.agencyNumber = agencyNumber;
         this.client = client;
         this.balance = 0.0;
         this.transacoes = new ArrayList<>();
+        this.notificacao = notificacao;
     }
 
     public String getNumber() {
@@ -52,12 +53,16 @@ public class Conta {
         this.balance = balance;
     }
 
+    public void abrir(double abertura){
+        setBalance(balance += abertura);
+    }
+
     public void depositar(double deposit){
         if (deposit > 0){
             setBalance(balance += deposit);
             System.out.println("Depósito realizado com sucesso");
-            getNotificacao().enviarNotificacao(deposit, "Depósito");
             getTransacoes().add(new Transacao(deposit, "Depósito"));
+            getNotificacao().enviarNotificacao(deposit, "Depósito");
         } else{
             System.out.println("Depósito Inválido");
         }
@@ -67,8 +72,8 @@ public class Conta {
         if (saque <= balance){
             setBalance(balance -= saque);
             System.out.println("Saque realizado com sucesso");
-            getNotificacao().enviarNotificacao(saque, "Saque");
             getTransacoes().add(new Transacao(saque, "Saque"));
+            getNotificacao().enviarNotificacao(saque, "Saque");
         } else {
             System.out.println("Saldo Insuficiente.");
         }
@@ -95,7 +100,4 @@ public class Conta {
             System.out.println(novaTransacao.toString());
         }
     }
-
 }
-
-
