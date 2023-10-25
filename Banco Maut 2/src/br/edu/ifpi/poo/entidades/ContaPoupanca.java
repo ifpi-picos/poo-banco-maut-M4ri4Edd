@@ -1,8 +1,18 @@
 package br.edu.ifpi.poo.entidades;
 
+import br.edu.ifpi.poo.notificações.Notificacao;
+
 public class ContaPoupanca extends Conta {
-    public ContaPoupanca(String number, String agencyNumber, Client client, double balance, Transacao transacoes) {
-        super(number, agencyNumber, client, balance, transacoes);
+    public ContaPoupanca(String number, String agencyNumber, Client client, double balance, Transacao transacoes, Notificacao notificacao) {
+        super(number, agencyNumber, client, balance, transacoes, notificacao);
+    }
+
+     public Notificacao getNotificacao() {
+       return notificacao;
+    }
+
+    public void setNotificacao(Notificacao notificacao) {
+        this.notificacao = notificacao;
     }
 
     @Override
@@ -10,7 +20,7 @@ public class ContaPoupanca extends Conta {
         if (deposit > 0) {
             double rendimentoDeposito = deposit + (deposit * 0.1);
             setBalance(balance += rendimentoDeposito);
-           /*  getNotificacao().enviarNotificacao(deposit, "Depósito na Conta Poupança");*/
+            getNotificacao().enviarNotificacao(deposit, "Depósito na Conta Poupança");
             System.out.println("Depósito realizado com sucesso");
             getTransacoes().add(new Transacao(deposit, "Depósito na conta Poupança"));
         } else{
@@ -43,5 +53,4 @@ public class ContaPoupanca extends Conta {
             System.out.println("Tranferência Interrompida: Saldo Insuficiente.");
         }
     }
-
 }
