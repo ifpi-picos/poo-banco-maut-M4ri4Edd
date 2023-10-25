@@ -40,7 +40,7 @@ public class App {
                 System.out.println("________________________________________________");
                 int acc = scanner.nextInt();
                 scanner.nextLine();
-                System.out.println("Digite o número da conta");
+                System.out.println("Digite o número da Conta");
                 String number = scanner.nextLine();
                 System.out.println("Digite o número da Agência");
                 String agencyNumber = scanner.nextLine();
@@ -80,6 +80,8 @@ public class App {
                     }
                 }
             }else if(option == 2){
+                System.out.println("Digite o número da conta que deseja reconfigurar:");
+                String number = scanner.nextLine();
                 System.out.println("____________________________________");
                 System.out.println("Como deseja receber Notificações ?");
                 System.out.println("1) Via SMS");
@@ -88,10 +90,10 @@ public class App {
                 int notif = scanner.nextInt();
                 scanner.nextLine();
                 for(Conta conta : contas){
-                    if(notif == 1){
+                    if(notif == 1 && conta.getNumber().equals(number)){
                         conta.setNotificacao(new NotificacaoSMS());
                         System.out.println("Suas notificações serão enviadas por SMS a partir de agora.");
-                    } else if (notif == 2){
+                    } else if (notif == 2 && conta.getNumber().equals(number)){
                         conta.setNotificacao(new NotificacaoEmail());
                         System.out.println("Suas notificações serão enviadas por Email a partir de agora.");
                     } else{
@@ -99,11 +101,11 @@ public class App {
                     }
                 }
             }else if(option == 3){
-                System.out.println("Digite o número da conta");
+                System.out.println("Digite o número da Conta");
                 String number = scanner.nextLine();
-                System.out.println("Digite o número da agência");
+                System.out.println("Digite o número da Agência");
                 String agencyNumber = scanner.nextLine();
-                System.out.println("Digite o valor do depósito");
+                System.out.println("Digite o valor do Depósito");
                 double deposit = scanner.nextDouble();
                 scanner.nextLine();
                 for(Conta conta : contas){
@@ -112,9 +114,9 @@ public class App {
                     }
                 }
             }else if(option == 4){
-                System.out.println("Digite o número da conta");
+                System.out.println("Digite o número da Conta");
                 String number = scanner.nextLine();
-                System.out.println("Digite o número da agência");
+                System.out.println("Digite o número da Agência");
                 String agencyNumber = scanner.nextLine();
                 System.out.println("Digite o valor do Saque");
                 double saque = scanner.nextDouble();
@@ -125,15 +127,15 @@ public class App {
                     }
                 }
             } else if(option == 5){
-                System.out.println("Digite o número da conta de origem");
+                System.out.println("Digite o número da Conta de origem");
                 String numberOrigem = scanner.nextLine();
-                System.out.println("Digite o número da agência de origem");
+                System.out.println("Digite o número da Agência de origem");
                 String agencyNumberOrigem = scanner.nextLine();
-                System.out.println("Digite o número da conta de destino");
+                System.out.println("Digite o número da Conta de destino");
                 String numberDestino = scanner.nextLine();
-                System.out.println("Digite o número da agência de destino");
+                System.out.println("Digite o número da Agência de destino");
                 String agencyNumberDestino = scanner.nextLine();
-                System.out.println("Digite o valor da transferência");
+                System.out.println("Digite o valor da Transferência");
                 double transferencia = scanner.nextDouble();
                 scanner.nextLine();
                 for(Conta conta : contas){
@@ -145,16 +147,16 @@ public class App {
                     }
                 }
             } else if(option == 6){
-                System.out.println("Digite o Numero da conta que deseja vizualizar: ");
+                System.out.println("Digite o Numero da Conta que deseja vizualizar: ");
                 String number = scanner.nextLine();
-                System.out.println("Digite o Numero da agência da conta: ");
+                System.out.println("Digite o Numero da Agência da Conta: ");
                 String agencyNumber = scanner.nextLine();
                 for(Conta conta : contas){
                     if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
                         System.out.println("____________________________________");
                         System.out.println("INFORMAÇÕES DA CONTA " + number);
                         System.out.println("Cliente: " + client1.getName());
-                        System.out.println("Número da conta: " + number);
+                        System.out.println("Número da Conta: " + number);
                         System.out.println("Agência: " + agencyNumber);
                         System.out.println("CPF: " + client1.getCPF());
                         System.out.println("Data de Nascimento :" + client1.getBirthdate());
@@ -165,13 +167,13 @@ public class App {
                     }
                 }
             } else if(option == 7){
-                System.out.println("Digite o Numero da conta que deseja vizualizar: ");
+                System.out.println("Digite o Numero da Conta que deseja vizualizar: ");
                 String number = scanner.nextLine();
-                System.out.println("Digite o Numero da agência da conta: ");
+                System.out.println("Digite o Numero da Agência da conta: ");
                 String agencyNumber = scanner.nextLine();
                 for(Conta conta : contas){
                     if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
-                        System.out.println("Saldo da conta " + number + ": R$ " + conta.getBalance());
+                        System.out.println("Saldo da Conta " + number + ": R$ " + conta.getBalance());
                     }
                 }
             } else if(option == 0){
