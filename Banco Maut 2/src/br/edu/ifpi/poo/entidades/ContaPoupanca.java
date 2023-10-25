@@ -3,7 +3,7 @@ package br.edu.ifpi.poo.entidades;
 import br.edu.ifpi.poo.notificações.Notificacao;
 
 public class ContaPoupanca extends Conta {
-    public double rendimento;
+    private double rendimento;
     public ContaPoupanca(String number, String agencyNumber, Client client, double balance, Transacao transacoes, Notificacao notificacao, double rendimento) {
         super(number, agencyNumber, client, balance, transacoes, notificacao);
         this.rendimento = 1.1;
