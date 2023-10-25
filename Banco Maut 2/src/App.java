@@ -16,33 +16,75 @@ public class App {
         Client client1 = new Client("Maria Luz", "000.000.000-00", "18/10/2005", new Endereco("791", "ACL", "Ipueiras", "Picos", "PI", "64000"));
         Scanner scanner = new Scanner(System.in);
 
-        Conta contaCorrente = new ContaCorrente("101", "00001", client1, 1000, null);
-        Conta contaPoupança = new ContaPoupanca("202", "00001", client1, 1000, null);
-
-        contas.add(contaCorrente);
-        contas.add(contaPoupança);
-
         while(true){
-            System.out.println("_______________MENU - BANCO MAUT_______________");
-            System.out.println("");
-            System.out.println("              1)Configurar Nnotificações");
-            System.out.println("              2) Depositar");
-            System.out.println("              3) Sacar");
-            System.out.println("              4) Transferir");
-            System.out.println("              5) Consultar Informações da conta");
-            System.out.println("              6) Consultar Saldo");
-            System.out.println("              0) Sair");
-            System.out.println("              Selecione a opção desejada");
+            System.out.println("\n__________M E N U - B A N C O  M A U T__________");
+            System.out.println("\n            1) Cadastrar Conta");
+            System.out.println("            2) Reconfigurar Notificações");
+            System.out.println("            3) Depositar");
+            System.out.println("            4) Sacar");
+            System.out.println("            5) Transferir");
+            System.out.println("            6) Consultar Informações da conta");
+            System.out.println("            7) Consultar Saldo");
+            System.out.println("            0) Sair");
+            System.out.println("            Selecione a opção desejada");
             System.out.println("________________________________________________");
 
             int option = scanner.nextInt();
             scanner.nextLine();
 
             if(option == 1){
+                System.out.println("________________CADASTRO DE CONTA________________");
+                System.out.println("\nSelecione o tipo de conta que deseja cadastrar:");
+                System.out.println("1) Conta Corrente");
+                System.out.println("2) Conta Poupança");
+                System.out.println("________________________________________________");
+                int acc = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Digite o número da conta");
+                String number = scanner.nextLine();
+                System.out.println("Digite o número da Agência");
+                String agencyNumber = scanner.nextLine();
+                System.out.println("Digite o valor de Abertura");
+                double abertura = scanner.nextDouble();
+                if (acc == 1){
+                    contas.add(new ContaCorrente(number, agencyNumber, client1, abertura, null, null));
+                    System.out.println("Nova Conta Cadastrada com sucesso");
+                } else if (acc == 2){
+                    contas.add(new ContaPoupanca(number, agencyNumber, client1, abertura, null, null));
+                    System.out.println("Nova Conta Cadastrada com sucesso");
+                }
+
+                if (contas != null){
+                    for(Conta conta : contas){
+                        if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
+                            conta.abrir(abertura);
+                        }
+                    }
+                    System.out.println("____________________________________");
+                    System.out.println("Como deseja receber Notificações ?");
+                    System.out.println("1) Via SMS");
+                    System.out.println("2) Via Email");
+                    System.out.println("____________________________________");
+                    int notif = scanner.nextInt();
+                    scanner.nextLine();
+                    for(Conta conta : contas){
+                        if(notif == 1){
+                            conta.setNotificacao(new NotificacaoSMS());
+                            System.out.println("Suas notificações serão enviadas por SMS a partir de agora.");
+                        } else if (notif == 2){
+                            conta.setNotificacao(new NotificacaoEmail());
+                            System.out.println("Suas notificações serão enviadas por Email a partir de agora.");
+                        } else{
+                            System.out.println("Opção Inválida");
+                        }
+                    }
+                }
+            }else if(option == 2){
+                System.out.println("____________________________________");
                 System.out.println("Como deseja receber Notificações ?");
                 System.out.println("1) Via SMS");
                 System.out.println("2) Via Email");
-                System.out.println("3) Via SMS e Email");
+                System.out.println("____________________________________");
                 int notif = scanner.nextInt();
                 scanner.nextLine();
                 for(Conta conta : contas){
@@ -52,15 +94,11 @@ public class App {
                     } else if (notif == 2){
                         conta.setNotificacao(new NotificacaoEmail());
                         System.out.println("Suas notificações serão enviadas por Email a partir de agora.");
-                    } else if (notif == 3){
-                        conta.setNotificacao(new NotificacaoSMS());
-                        conta.setNotificacao(new NotificacaoEmail());
-                        System.out.println("Suas notificações serão enviadas por SMS e Email a partir de agora.");
                     } else{
                         System.out.println("Opção Inválida");
                     }
                 }
-            }else if(option == 2){
+            }else if(option == 3){
                 System.out.println("Digite o número da conta");
                 String number = scanner.nextLine();
                 System.out.println("Digite o número da agência");
@@ -73,7 +111,7 @@ public class App {
                         conta.depositar(deposit);
                     }
                 }
-            }else if(option == 3){
+            }else if(option == 4){
                 System.out.println("Digite o número da conta");
                 String number = scanner.nextLine();
                 System.out.println("Digite o número da agência");
@@ -86,7 +124,7 @@ public class App {
                         conta.Sacar(saque);
                     }
                 }
-            } else if(option == 4){
+            } else if(option == 5){
                 System.out.println("Digite o número da conta de origem");
                 String numberOrigem = scanner.nextLine();
                 System.out.println("Digite o número da agência de origem");
@@ -106,24 +144,27 @@ public class App {
                         conta.receberTransferencia(transferencia);
                     }
                 }
-            } else if(option == 5){
+            } else if(option == 6){
                 System.out.println("Digite o Numero da conta que deseja vizualizar: ");
                 String number = scanner.nextLine();
                 System.out.println("Digite o Numero da agência da conta: ");
                 String agencyNumber = scanner.nextLine();
                 for(Conta conta : contas){
                     if(conta.getNumber().equals(number) && conta.getAgencyNumber().equals(agencyNumber)){
+                        System.out.println("____________________________________");
                         System.out.println("INFORMAÇÕES DA CONTA " + number);
                         System.out.println("Cliente: " + client1.getName());
                         System.out.println("Número da conta: " + number);
                         System.out.println("Agência: " + agencyNumber);
                         System.out.println("CPF: " + client1.getCPF());
                         System.out.println("Data de Nascimento :" + client1.getBirthdate());
+                        System.out.println("____________________________________");
                         System.out.println("HISTÓRICO DE TRANSAÇÕES");
                         conta.verExtrato();
+                        System.out.println("____________________________________");
                     }
                 }
-            } else if(option == 6){
+            } else if(option == 7){
                 System.out.println("Digite o Numero da conta que deseja vizualizar: ");
                 String number = scanner.nextLine();
                 System.out.println("Digite o Numero da agência da conta: ");
