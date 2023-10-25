@@ -3,8 +3,14 @@ package br.edu.ifpi.poo.entidades;
 import br.edu.ifpi.poo.notificações.Notificacao;
 
 public class ContaPoupanca extends Conta {
-    public ContaPoupanca(String number, String agencyNumber, Client client, double balance, Transacao transacoes, Notificacao notificacao) {
+    public double rendimento;
+    public ContaPoupanca(String number, String agencyNumber, Client client, double balance, Transacao transacoes, Notificacao notificacao, double rendimento) {
         super(number, agencyNumber, client, balance, transacoes, notificacao);
+        this.rendimento = 1.1;
+    }
+
+    public double getRendimento() {
+        return rendimento;
     }
 
      public Notificacao getNotificacao() {
@@ -18,7 +24,7 @@ public class ContaPoupanca extends Conta {
     @Override
     public void depositar(double deposit) {
         if (deposit > 0) {
-            double rendimentoDeposito = deposit + (deposit * 0.1);
+            double rendimentoDeposito = deposit * getRendimento();
             setBalance(balance += rendimentoDeposito);
             getNotificacao().enviarNotificacao(deposit, "Depósito na Conta Poupança");
             System.out.println("Depósito realizado com sucesso");
